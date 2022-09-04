@@ -13,7 +13,7 @@ contract JointSavings {
     address payable accountTwo;
     uint public lastWithdrawAmount;
     uint public contractBalance;
-
+    address lastToWithdraw;
     /*
     Define a function named **withdraw** that will accept two arguments.
     - A `uint` variable named `amount`
@@ -35,20 +35,20 @@ contract JointSavings {
         /*
         Add and `if` statement to check if the `lastToWithdraw` is not equal to (`!=`) to `recipient` If `lastToWithdraw` is not equal, then set it to the current value of `recipient`.
         */
-        if (lastWithdrawAmount != recipient) {
-            lastWithdrawAmount = recipient;
+        if (lastToWithdraw != recipient) {
+            lastToWithdraw = recipient;
 
     }
         
         // Call the `transfer` function of the `recipient` and pass it the `amount` to transfer as an argument.
         return msg.sender.transfer(amount);
- }
+ 
 
         // Set  `lastWithdrawAmount` equal to `amount`
-        lastWithdrawAmount = amount;
-        contractBalance = address(this).balance - amount;
+            lastWithdrawAmount = amount;
+            contractBalance = address(this).balance - amount;
 
- 
+ }
 
         // Call the `contractBalance` variable and set it equal to the balance of the contract by using `address(this).balance` to reflect the new balance of the contract.
         
@@ -76,7 +76,6 @@ contract JointSavings {
     /*
     Finally, add the **default fallback function** so that your contract can store Ether sent from outside the deposit function.
     */
-       function() public payable{
-
-       }
+    function() external payable{
+ }
 }
