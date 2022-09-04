@@ -17,7 +17,7 @@ contract JointSavings {
     address payable accountTwo;
     uint public lastWithdrawAmount;
     uint public contractBalance;
-    address lastToWithdraw;
+    address public lastToWithdraw;
     /*
     Define a function named **withdraw** that will accept two arguments.
     - A `uint` variable named `amount`
